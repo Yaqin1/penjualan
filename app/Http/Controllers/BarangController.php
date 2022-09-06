@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Kategori;
+use App\Models\Suplier;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -14,7 +16,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        return view('barang.index');
     }
 
     /**
@@ -24,7 +26,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = kategori::all();
+        $suplier = suplier::all();
+        return view('barang.add', compact('kategori','suplier'));
     }
 
     /**

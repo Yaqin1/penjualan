@@ -11,8 +11,8 @@
 
     <h5>Data Barang</h5>
 
-        <button type="button" class="btn btn-success btn-sm float-end" data-bs-toggle='modal' data-bs-target='#modalTambah'><i class="fa fa-plus">
-        </i></button>
+       <a class="btn btn-success btn-sm float-end" href="{{route ('barang.create') }}">
+        <i class="fa fa-plus"></i></a>
         </div>
     </div>
 
