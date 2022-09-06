@@ -33,13 +33,14 @@
 </div>
   </thead>
   <tbody>
-    <tr>
-        <td>1</td>
-        <td>Yaqin</td>
-        <td>85.000</td>
-        <td>15</td>
-        <td>Abdi</td>
-        <td>Aksesoris</td>
+   @foreach ($barang as $item)
+   <tr>
+        <td>{{$loop->iteration}}</td>
+        <td>{{$item->nama}}</td>
+        <td>{{$item->harga}}</td>
+        <td>{{$item->stok}}</td>
+        <td>{{$item->suplier_id}}</td>
+        <td>{{$item->kategori_id}}</td>
         <td>
             <a href="#" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i>
             <a>
@@ -47,6 +48,7 @@
             <a>
         </td>
     </tr>
+   @endforeach
   </tbody>
 </table>
 

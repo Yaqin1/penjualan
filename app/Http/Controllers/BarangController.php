@@ -16,7 +16,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang.index');
+        $barang = Barang::all();
+        return view('barang.index', compact('barang'));
     }
 
     /**
@@ -39,7 +40,16 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:225',
+            'harga' => 'required|numeric',
+            'stok' => 'required|numeric|min:1',
+            'suplier_id' => 'required',
+            'kategori_id' => 'required',
+        ]);
+   
+        $barang = Barang::create($request->all());
+        return redirect('barang');
     }
 
     /**
