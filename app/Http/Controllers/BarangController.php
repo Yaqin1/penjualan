@@ -69,9 +69,12 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    public function edit($id)
     {
-        //
+        $suplier = Suplier::all();
+        $kategori =Kategori::all();
+        $b = Barang::find($id);
+        return view ('barang.edit', compact('b','suplier','kategori'));
     }
 
     /**
@@ -83,17 +86,34 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
-    }
+        $validate = $request->validate([
+            'nama' => 'required|max:225',
+            'harga' => 'required|numeric',
+            'stok' => 'required|numeric|min:1',
+            'suplier_id' => 'required',
+            'kategori_id' => 'required',
+        ]);
+   
+        $barang->update([
+            'nama'=> $request->nama,
+            'harga'=> $request->harga,
+            'stok'=> $request->stok,
+            'suplier_id'=> $request->suplier_id,
+            'kategori_id'=> $request->kategori_id,
 
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        //
+        $barang = Barang::find($id);
+        $barang->delete();
+
+        return redirect('barang');
     }
 }
